@@ -1,32 +1,55 @@
-import Image from 'next/image'
+import Image from 'next/image';
+import Card from './components/Card';
+import Footer from './components/Footer';
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
+    <div className='grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]'>
+      <main className='flex flex-col gap-8 row-start-2 items-center sm:items-start'>
         <Image
-          className="dark"
-          src="/fulllogo.png"
-          alt="Aztec Robotics logo"
+          className='dark'
+          src='/fulllogo.png'
+          alt='Aztec Robotics logo'
           width={180}
           height={38}
           priority
         />
-        <div className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]"></div>
+        <div className='flex flex-row space-x-4'>
+          <Card
+            title='Meet Our Team'
+            description='Discover the *talented* individuals who are *driving innovation* in our robotics projects and competitions'
+            link='/team'
+            link_description='Meet the Team'
+          />
+          <Card
+            title='Upcoming Events'
+            description='Join us for our events and hands-on workshops where you will learn about the latest in robotics technology and programming'
+            link='/events'
+            link_description='Join the Events'
+          />
+          <Card
+            title='Ongoing Robotics Projects'
+            description='Explore the exciting projects our team is working on, from autonomous robots to AI-driven systems.'
+            link='/projects'
+            link_description='Current Projects'
+          />
+        </div>
+        <div className='list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]'></div>
         This website is under contruction. Check back in soon.
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
+        {/* <div className='flex gap-4 items-center flex-col sm:flex-row'>
           <a
-            className="rounded-full bg-foreground text-background border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#383838] dark:hover:bg-[#ccc] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://discord.gg/CjNWYkVkG3"
-            target="_blank"
-            rel="noopener noreferrer"
+            className='rounded-full bg-foreground text-background border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#383838] dark:hover:bg-[#ccc] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44'
+            href='https://discord.gg/CjNWYkVkG3'
+            target='_blank'
+            rel='noopener noreferrer'
           >
             Join the discord
           </a>
-        </div>
+        </div> */}
+        <Footer />
       </main>
 
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center"></footer>
+      <footer className='row-start-3 flex gap-6 flex-wrap items-center justify-center'></footer>
     </div>
-  )
+  );
 }
