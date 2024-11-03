@@ -6,7 +6,7 @@ const Projects = () => {
     <div>
       <Header />
       <h1>Ongoing Projects</h1>
-      <p>{`Information about the club's ongoing projects goes here.`}</p>
+      <p>Information about the club&apos;s ongoing projects goes here.</p>
       <Footer />
     </div>
   );
