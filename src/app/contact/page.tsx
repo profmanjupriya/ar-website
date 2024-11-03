@@ -1,9 +1,39 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { Bounce, ToastContainer, Zoom, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ContactPage = () => {
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    formData.append('access_key', 'fa5927be-4efe-41f3-9476-1436efba1e48');
+
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
+
+    const response = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: json,
+    });
+    const result = await response.json();
+    if (result.success) {
+      console.log(result); // Log the response to the console
+      toast.success('Thanks for your message!');
+      // Simulate sending a message (e.g., sending data to a backend)
+      console.log('Message sent:', formData);
+      const resetForm = e.target as HTMLFormElement;
+      resetForm.reset();
+    } else {
+      toast.error('Submission failed. Please try again.');
+    }
+  };
   return (
     <div className='flex flex-col space-y-8'>
       <Header />
@@ -27,8 +57,8 @@ const ContactPage = () => {
 
           <div className='mx-auto md:w-2/3 lg:w-1/2'>
             <form
-              action='https://api.web3forms.com/submit'
-              method='POST'
+              id='contact-form'
+              onSubmit={handleSubmit}
               className='-m-2 flex flex-wrap'
             >
               <input
@@ -91,15 +121,28 @@ const ContactPage = () => {
               </div>
               <div className='w-full p-2'>
                 <button
-                  type='submit'
-                  className='mx-auto flex rounded border-0 bg-black py-2 px-8 text-lg text-white hover:bg-gray-800 focus:outline-none'
+                  className='mx-auto flex rounded bg-slate-900 py-2 px-8 border border-transparent text-center text-lg text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none'
+                  type='button'
                 >
                   {' '}
                   Send
                 </button>
               </div>
+              <ToastContainer
+                position='bottom-center'
+                autoClose={3000}
+                hideProgressBar={true}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme='light'
+                transition={Zoom}
+              />
               <div className='mt-8 w-full border-t border-gray-300 p-2 pt-8 text-center'>
-                <a className='text-gray-500'>example@email.com</a>
+                <a className='text-gray-500'>sdsu.aztecrobotics@gmail.com</a>
               </div>
             </form>
           </div>

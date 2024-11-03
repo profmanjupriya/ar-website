@@ -5,14 +5,16 @@ const Header: React.FC = () => {
   return (
     <nav className='bg-white relative w-full z-20 top-0 start-0 border-b border-gray-200'>
       <div className='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4'>
-        <Image
-          className='dark object-left-top'
-          src='/fulllogo.png'
-          alt='Aztec Robotics logo'
-          width={130}
-          height={38}
-          priority
-        />
+        <a href='/'>
+          <Image
+            className='dark object-left-top'
+            src='/fulllogo.png'
+            alt='Aztec Robotics logo'
+            width={130}
+            height={38}
+            priority
+          />
+        </a>
         <div
           className='items-center justify-between hidden w-full md:flex md:w-auto md:order-1'
           id='navbar-sticky'
