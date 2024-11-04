@@ -1,15 +1,17 @@
 'use client';
-import React, { useState } from 'react';
+import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { Bounce, ToastContainer, Zoom, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, Zoom, toast } from 'react-toastify';
 
 const ContactPage = () => {
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    console.log('Send button clicked');
     e.preventDefault();
-    const formData = new FormData(e.target);
-    formData.append('access_key', 'fa5927be-4efe-41f3-9476-1436efba1e48');
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+    formData.append('access_key', 'fe63b653-18e7-43bf-8e7e-050ad927a478');
 
     const object = Object.fromEntries(formData);
     const json = JSON.stringify(object);
@@ -61,11 +63,6 @@ const ContactPage = () => {
               onSubmit={handleSubmit}
               className='-m-2 flex flex-wrap'
             >
-              <input
-                type='hidden'
-                name='access_key'
-                value='fe63b653-18e7-43bf-8e7e-050ad927a478'
-              />
               <div className='w-1/2 p-2'>
                 <div className='relative'>
                   <input
@@ -122,7 +119,7 @@ const ContactPage = () => {
               <div className='w-full p-2'>
                 <button
                   className='mx-auto flex rounded bg-slate-900 py-2 px-8 border border-transparent text-center text-lg text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none'
-                  type='button'
+                  type='submit'
                 >
                   {' '}
                   Send
